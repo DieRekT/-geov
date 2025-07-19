@@ -4,25 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoVault Rockhound UI</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="public/css/styles.css">
 </head>
 <body>
     <!-- Basic structure for now - will be enhanced in later stages -->
     <div id="app">
         <nav id="sidebar">
+            <div id="clock" class="clock"></div>
             <div id="tab-map" class="tab">Map</div>
             <div id="tab-calendar" class="tab">Calendar</div>
             <div id="tab-logbook" class="tab">Logbook</div>
             <div id="tab-settings" class="tab">Settings</div>
         </nav>
         <main>
-            <div id="map-container"></div>
+            <div id="map-container">
+                <div id="map" style="height: 100%; width: 100%;"></div>
+                <button id="add-pin-btn" class="add-pin-btn">➕ Drop a Pin</button>
+            </div>
             <div id="calendar-container" class="hidden"></div>
             <div id="logbook-container" class="hidden"></div>
             <div id="settings-container" class="hidden"></div>
         </main>
+
+        <!-- Calendar Modal -->
+        <div id="calendar-modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-button">&times;</button>
+                <h2>Calendar</h2>
+                <div class="calendar-grid">
+                    <div class="calendar-header">
+                        <button id="prev-month"><</button>
+                        <span id="current-month">July 2025</span>
+                        <button id="next-month">></button>
+                    </div>
+                    <div class="calendar-days">
+                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+                        <div>Thu</div><div>Fri</div><div>Sat</div>
+                    </div>
+                    <div id="calendar-dates" class="calendar-dates"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Find Modal -->
+        <div id="add-find-modal" class="modal hidden">
+            <div class="modal-content add-find-content">
+                <button class="close-button">&times;</button>
+                <h2>Add New Find</h2>
+                <form id="add-find-form" class="add-find-form">
+                    <div class="form-group">
+                        <label for="find-name">Find Name *</label>
+                        <input type="text" id="find-name" name="findName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="find-photo">Photo Upload</label>
+                        <input type="file" id="find-photo" name="photo" accept="image/*">
+                        <div id="photo-preview" class="photo-preview hidden"></div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="find-lat">Latitude *</label>
+                            <input type="number" id="find-lat" name="latitude" step="any" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="find-lng">Longitude *</label>
+                            <input type="number" id="find-lng" name="longitude" step="any" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="find-notes">Notes</label>
+                        <textarea id="find-notes" name="notes" rows="4" placeholder="Describe your find..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="find-tags">Tags</label>
+                        <input type="text" id="find-tags" name="tags" placeholder="e.g., quartz, crystal, mineral">
+                        <small>Separate tags with commas</small>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancel-find">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Find</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="public/js/sidebar.js"></script>
     <script src="public/js/map.js"></script>
     <script src="public/js/chat.js"></script>

@@ -1,4 +1,405 @@
 /* Base styles - will be enhanced in Stage 7 */
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+
+#sidebar {
+  width: 200px;
+  background: #f5f5f5;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.clock {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clock:hover {
+  background-color: #e0e0e0;
+}
+
+.tab {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.tab:hover {
+  background-color: #e0e0e0;
+}
+
+.tab.active {
+  background-color: #007bff;
+  color: white;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s;
+  z-index: 10000;
+}
+
+.modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  min-width: 320px;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.close-button:hover {
+  background: #f0f0f0;
+}
+
+/* Calendar styles */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.month-nav {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #007bff;
+}
+
+.month-nav:hover {
+  color: #0056b3;
+}
+
+#current-month {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+#calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.calendar-header {
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+  background-color: #e0e0e0;
+}
+
+.calendar-day.current {
+  background-color: #007bff;
+  color: white;
+}
+
+.calendar-day.empty {
+  cursor: default;
+}
+
+.calendar-day.empty:hover {
+  background-color: transparent;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+}
+
+.calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  text-align: center;
+}
+
+/* Container transitions */
+#map-container,
+#calendar-container,
+#logbook-container,
+#settings-container {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
+  opacity: 0;
+}
+
+/* Map styles */
+#map-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.add-pin-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.add-pin-btn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-pin-btn.active {
+  background: #dc3545;
+}
+
+.add-pin-btn.active:hover {
+  background: #c82333;
+}
+
+/* Pin popup styles */
+.pin-popup {
+  text-align: center;
+}
+
+.pin-popup h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.pin-popup p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+/* Add New Find Modal Styles */
+.add-find-content {
+  max-width: 500px;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.add-find-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-group input[readonly] {
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
+
+.form-group small {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+/* Photo upload styles */
+.photo-preview {
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remove-photo {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-photo:hover {
+  background: rgba(220, 53, 69, 1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .add-find-content {
+    width: 95vw;
+    margin: 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
 }
