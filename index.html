@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoVault Rockhound UI</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+<body>
+    <!-- Basic structure for now - will be enhanced in later stages -->
+    <div id="app">
+        <nav id="sidebar">
+            <div id="tab-map" class="tab">Map</div>
+            <div id="tab-calendar" class="tab">Calendar</div>
+            <div id="tab-logbook" class="tab">Logbook</div>
+            <div id="tab-settings" class="tab">Settings</div>
+        </nav>
+        <main>
+            <div id="map-container"></div>
+            <div id="calendar-container" class="hidden"></div>
+            <div id="logbook-container" class="hidden"></div>
+            <div id="settings-container" class="hidden"></div>
+        </main>
+    </div>
+
+    <script src="public/js/sidebar.js"></script>
+    <script src="public/js/map.js"></script>
+    <script src="public/js/chat.js"></script>
+    <script src="public/js/calendar.js"></script>
+    <script src="public/js/modal.js"></script>
+</body>
+</html>
