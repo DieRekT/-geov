@@ -1,0 +1,21 @@
+{
+  "name": "geovault",
+  "version": "1.0.0",
+  "description": "GeoVault Rockhound UI - A clean, responsive static web app",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint public/js/**/*.js",
+    "test": "jest",
+    "a11y": "axe public/index.html",
+    "ci": "npm run lint && npm run test && npm run a11y"
+  },
+  "keywords": ["geovault", "rockhound", "ui", "leaflet", "map"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.x",
+    "jest": "^29.x",
+    "axe-core": "^4.x",
+    "puppeteer": "^21.x"
+  }
+}
